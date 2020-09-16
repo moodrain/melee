@@ -23,6 +23,7 @@ class CreateRequestLogsTable extends Migration
             $table->string('path')->nullable();
             $table->string('controller')->nullable();
             $table->string('action')->nullable();
+            $table->string('user_agent')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

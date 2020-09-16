@@ -36,6 +36,7 @@ class RequestLog
             'status' => $response->status(),
             'controller' => $controller,
             'action' => $action,
+            'user_agent' => $request->userAgent(),
             'created_at' => $date,
             'updated_at' => $date,
         ]);
