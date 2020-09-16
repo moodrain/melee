@@ -26,7 +26,7 @@ class IndexController extends Controller
         $postTopRecords = DB::table('request_logs')
             ->whereNull('user_id')
             ->where('path', 'like', 'post/%')
-            ->selectRaw('cast(substr(path, 6, 1) as unsigned) as post_id, count(*) as count')
+            ->selectRaw('cast(substr(path, 6) as unsigned) as post_id, count(*) as count')
             ->groupByRaw('post_id')
             ->orderByRaw('count desc')
             ->take(10)
