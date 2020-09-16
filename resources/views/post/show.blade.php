@@ -46,7 +46,7 @@
                             留言
                         </el-col>
                         <el-col :span="8" style="text-align: right">
-                            <el-button v-if="! showForm" size="small" icon="el-icon-plus" @click.native="showForm = true"></el-button>
+                            <el-button v-if="! showForm" size="small" icon="el-icon-plus" @click="(showForm = true) && $refs.main.$el.scroll({top: 100000, behavior: 'smooth'})"></el-button>
                         </el-col>
                     </el-row>
                 </div>
