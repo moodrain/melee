@@ -39,7 +39,7 @@
             </el-card>
             <br />
 
-            <el-card>
+            <el-card ref="comment" >
                 <div slot="header" style="width: 100%">
                     <el-row>
                         <el-col :span="16">
@@ -50,6 +50,7 @@
                         </el-col>
                     </el-row>
                 </div>
+
                 <el-card shadow="none" v-if="showForm">
                     <el-form>
                         <x-input exp="model:form.userName;pre:名称;holder:可选" />
@@ -58,6 +59,7 @@
                         <el-button @click="submit">提交留言</el-button>
                     </el-form>
                 </el-card>
+
                 <div v-for="(comment, index) in comments" :key="comment.id">
                     <el-divider v-if="index !== 0"></el-divider>
                     <div class="mdui-typo content" v-html="$marked($decodeBase64(comment.contentBase64))"></div>
@@ -106,9 +108,12 @@
                 },
                 toEdit() {
                     this.showForm = true
-                    this.$nextTick(() => {
-                        this.$refs.main.$el.scroll({top: 100000, behavior: 'smooth'})
-                    })
+                    let commentCardHeight = 320
+                    if (window.innerHeight - this.$refs.comment.$el.getBoundingClientRect().top < commentCardHeight) {
+                        this.$nextTick(() => {
+                            this.$refs.main.$el.scroll({top: this.$refs.main.$el.scrollTop + commentCardHeight, behavior: 'smooth'})
+                        })
+                    }
                 }
             },
             mounted() {
