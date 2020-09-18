@@ -23,6 +23,14 @@
                 </p>
             </el-card>
 
+            <el-card v-if="$query('title')">
+                <p>
+                    <span>标题 @{{ $query('title') }} 的搜索结果</span>
+                    <el-divider direction="vertical"></el-divider>
+                    <a href="/" style="color: gray">取消搜索</a>
+                </p>
+            </el-card>
+
             <el-card class="post" v-for="post in posts" :key="post.id">
                 <div class="mdui-typo">
                     <h4 style="margin-top: 0;margin-bottom: 2px;"><a style="color: black" :href="'/post/' + post.id" target="_blank">@{{ post.title }}</a></h4>
@@ -58,6 +66,7 @@
 
         </el-col>
     </el-row>
+    <x-search></x-search>
     <x-totop></x-totop>
 @endsection
 
@@ -78,6 +87,18 @@
                 @include('piece.method')
                 renderContent(base64) {
                     return this.$marked($decodeBase64(base64))
+                },
+                doSearch() {
+                    @if(mobile())
+                        let title = prompt('搜索')
+                        if (title) {
+                            this.$to('/', {title}, true)
+                        }
+                    @else
+                        this.$prompt('搜索').then(({value}) => {
+                            this.$to('/', {title: value}, true)
+                        }).catch(() => {})
+                    @endif
                 }
             },
             mounted() {

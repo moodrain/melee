@@ -11,7 +11,15 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $db = function() { return DB::table('request_logs')->whereNull('user_id'); };
+        $db = function() {
+            return DB::table('request_logs')
+                ->whereNull('user_id')
+                ->where(function($q) {
+                    $q->where('user_agent', 'not like', '%spider%')
+                        ->where('user_agent', 'not like', '%Spider%')
+                        ->where('user_agent', 'not like', '%SPIDER%');
+                });
+        };
         $now = Carbon::now();
         $lastMonth = Carbon::now()->subDays(30);
         $dbMonth = function() use ($db, $now, $lastMonth) { return $db()->whereBetween('created_at', [$lastMonth, $now]); };
@@ -23,9 +31,7 @@ class IndexController extends Controller
         })->count();
         $commentTotal = Comment::query()->count();
         $commentMonth = Comment::query()->whereBetween('created_at', [$lastMonth, $now])->count();
-        $postTopRecords = DB::table('request_logs')
-            ->whereNull('user_id')
-            ->where('path', 'like', 'post/%')
+        $postTopRecords = $db()->where('path', 'like', 'post/%')
             ->selectRaw('cast(substr(path, 6) as unsigned) as post_id, count(*) as count')
             ->groupByRaw('post_id')
             ->orderByRaw('count desc')
