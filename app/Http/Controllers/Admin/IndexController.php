@@ -17,7 +17,10 @@ class IndexController extends Controller
                 ->where(function($q) {
                     $q->where('user_agent', 'not like', '%spider%')
                         ->where('user_agent', 'not like', '%Spider%')
-                        ->where('user_agent', 'not like', '%SPIDER%');
+                        ->where('user_agent', 'not like', '%SPIDER%')
+                        ->where('user_agent', 'not like', '%bot%')
+                        ->where('user_agent', 'not like', '%Bot%')
+                        ->where('user_agent', 'not like', '%BOT%');
                 });
         };
         $now = Carbon::now();
