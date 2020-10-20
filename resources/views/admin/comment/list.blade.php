@@ -17,8 +17,8 @@
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="id" label="ID" width="60"></el-table-column>
         <el-table-column prop="post.title" label="文章"></el-table-column>
-        <el-table-column prop="user_name" label="用户"></el-table-column>
-        <el-table-column prop="user_email" label="邮箱"></el-table-column>
+        <el-table-column prop="userName" label="用户"></el-table-column>
+        <el-table-column prop="userEmail" label="邮箱"></el-table-column>
         <el-table-column prop="contentShort" label="内容"></el-table-column>
         <el-table-column prop="createdAt" label="时间" width="160"></el-table-column>
         <x-admin.list-body-col :m="$m" />

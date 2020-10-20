@@ -11,7 +11,7 @@ class CommentController extends Controller
     {
         $rules = [
             'userName' => '',
-            'userEmail' => 'email',
+            'userEmail' => 'nullable|email',
             'postId' => 'required|int|exists:posts,id',
             'content' => 'required',
         ];

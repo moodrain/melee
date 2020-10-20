@@ -65,7 +65,7 @@
                     <div class="mdui-typo content" v-html="$marked($decodeBase64(comment.contentBase64))"></div>
                     <el-row>
                         <el-col :span="16">
-                            <div style="font-size: .9em">@{{ comment.userName }}</div>
+                            <div style="font-size: .9em">@{{ comment.userName ?? '匿名' }}</div>
                         </el-col>
                         <el-col :span="8">
                             <div class="post-date">@{{ comment.createdAtReadable }}</div>
