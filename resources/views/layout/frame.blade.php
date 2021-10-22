@@ -74,7 +74,7 @@
                     @if(config('app.url') == 'https://blog.moodrain.cn')
                     <el-footer style="height: 60px;background: #b4f3f4;padding: 0;color: white">
                         <div style="height: 40px;margin-top: 25px;background: black;padding-top: 10px;text-align: center">
-                            <a style="color: white" id="ICP" href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16040215号-2</a>
+                            <a style="color: white" id="ICP" href="https://beian.miit.gov.cn" target="_blank">粤ICP备16040215号-2</a>
                             <el-divider direction="vertical"></el-divider>
                             <span>本作品采用</span>
                             <a style="color: white" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议</a>
