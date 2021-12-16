@@ -11,7 +11,7 @@ class Post extends Model
 
     public static $searchRule = [
         'id' => '=',
-        'content' => 'like',
+        'title' => 'like',
     ];
 
     public static $sortRule = ['id', 'createdAt', 'updatedAt'];
